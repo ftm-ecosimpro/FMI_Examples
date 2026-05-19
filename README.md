@@ -32,7 +32,7 @@ Currently, EcosimPro and PROOSIS support the exporting and importing of the foll
 | 1.0 | Any | No | No |
 | 2.0 | ME | No | Yes |
 |  | CS | Yes | Yes |
-| 3.0 | ME | No | Yes |
+| 3.0 | ME | No | No |
 |  | CS | Yes | Yes |
 |  | SE | No | No |
 
