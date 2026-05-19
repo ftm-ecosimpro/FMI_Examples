@@ -16,9 +16,7 @@ All models generated with EcosimPro or PROOSIS can be exported using internation
 
 *******************************************************************************************
 
-# FMI_Examples
-
-This repository aims to provide a source of material for the use of the FMI estandard with EcosimPro and PROOSIS. The material here is provided "as is" for the only purpose of testing and validating the compatibility of EcosimPro and PROOSIS FMU capabilities when interacting with third-party tools. 
+This repository aims to provide a source of material for the use of the FMI estandard with EcosimPro and PROOSIS. The material here is provided "as is" for the only purpose of testing and validating the compatibility of EcosimPro and PROOSIS FMU capabilities when interacting with third-party tools. The material here provided is not validated, provided or supervised in any way by the Modellica Association.
 
 *******************************************************************************************
 
@@ -26,7 +24,7 @@ For any doubt, bug or suggestion, please contact with our support team. (support
 
 *******************************************************************************************
 
-## Generation and manipulation of FMUs in EcosimPro/PROOSIS
+# Generation and manipulation of FMUs in EcosimPro/PROOSIS
 Currently, EcosimPro and PROOSIS support the exporting and importing of the following:
 
 | FMI version | Interface Type | Import | Export |
