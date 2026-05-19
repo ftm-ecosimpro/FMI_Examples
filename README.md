@@ -1,4 +1,4 @@
-<img src="/img/logo/ecosimpro.png"  width="500"/>
+<img src="/img/logo/ecosimPro_logo_texto.svg"  width="500"/>
 
 EcosimPro is a first class modelling and simulation software for modeling 0D or 1D multidisciplinary continuous-discrete systems and any kind of system based on differential-algebraic equations (DAE) and discrete events. Although originally developed for space applications, namely to assist in the modelling of the Environmental and Control Life Support Systems (ECLSS) for European Space Agency (ESA)’s HERMES and COLUMBUS projects, due to the nature of its broad, wide-ranging capabilities it is now being used in many other fields as system simulation software. The first version of EcosimPro was released in 1993.
 
@@ -8,7 +8,7 @@ Engineers find it to be an extremely intuitive tool, since it has been designed 
 
 *******************************************************************************************
 
-<img src="/img/logo/proosis.png"  width="500"/>
+<img src="/img/logo/proosis_logo_texto.svg"  width="500"/>
 
 PROOSIS is a standalone, multi‑platform, object‑oriented environment designed for high-fidelity simulation of gas turbine engines and integrated aerospace systems. As an extension of EcosimPro, it adds aeronautics-specific tools like performance map handling, multipoint design, and support for SAE-standard “customer decks”, etc.
 
