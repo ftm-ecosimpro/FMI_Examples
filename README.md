@@ -25,7 +25,7 @@ For any doubt, bug or suggestion, please contact with our support team. (support
 *******************************************************************************************
 
 # Generation and manipulation of FMUs in EcosimPro/PROOSIS
-Currently, EcosimPro and PROOSIS support the exporting and importing of the following:
+Currently, as for version 7.2, EcosimPro and PROOSIS support the exporting and importing of the following:
 
 | FMI version | Interface Type | Import | Export |
 | :--- | --- | --- | --- |
@@ -36,7 +36,31 @@ Currently, EcosimPro and PROOSIS support the exporting and importing of the foll
 |  | CS | Yes | Yes |
 |  | SE | No | No |
 
+*******************************************************************************************
+
+Also, it is worth noting, that some of the new multiple functionalities introduced with FMI 3.0 are not yet available for FMUS generated with EcosimPro/PROOSIS or when importing thrid party FMUs. Here is a table with the current FMI 3.0 functionalities and their availability either when exporting or importing FMUs:
+
+| Functionality | Import | Export |
+| :--- |  --- | --- |
+| Terminals |  No | No |
+| Icons |  No | No |
+| Clocks |  Yes | No |
+| Integer and Float Types |  Yes | Yes |
+| Binary type |  Yes | No |
+| Array variables |  Yes | No |
+| Structural parameters |  Yes | No |
+| Adjoint derivatives |  Yes | No |
+| Build configuration files |  No | No |
+| Early return |  Yes | No |
+| Event Mode |  Yes | No |
+| Intermediate Update Mode | No | No |
+
+It is worth mentioning that the lack of support for many of the new FMI 3.0 capabilities is simply because EcosimPro and PROOSIS do not internally use, or benefit from the use of many of them, such as Clocks, Binary variables, Early return, etc. Some others, such as Icons, Terminals and Array variables are currently being evaluated for future updates.
+
+In the case of models imported from third-party sources, we have crafted our master library (COMM_FMI) with as much flexibility as possible to handle almost all possible functionalities and use cases referenced in the FMI 3.0 standard. Nevertheless, some of them still remain unsupported, either for having a lesser relevance when manipulating models (Icons, Terminals, Build configuration files) or because of strong limitations when trying to implement them with our current approach (Intermediate Update Mode).
+
 This repository does not cover the generation and manipulation of FMUs within our software. For that, you can check our documentation and our FMI examples toolkit (COMM_FMI), included with all program releases. 
+
 
 
 
