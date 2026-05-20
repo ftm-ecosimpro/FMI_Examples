@@ -63,4 +63,54 @@ This repository does not cover the generation and manipulation of FMUs within ou
 
 
 
+# Provided FMUs for testing and validation
 
+The following systems are all modeled and exported to FMU in EcosimPor/PROOSIS for the purpose of validation and testing of our capabilities or for others to use them as a tool to validate their own FMi masters.
+
+<details>
+<summary> AircraftGear </summary>
+  
+Aircraft arrester gear system example: Simulation of one of the system used to halt an aircraft landing on a runway (used for ZONE statement demonstration)
+
+These are the expected results with initial values of:
+**y3 = 0.**
+**y3' = 0.**
+**y2 = 0.**
+**y2' = 0.**
+**x = 0.**
+**x' = 60.96**
+
+<img src="/img/results/aircraftGear/aircraft_gear_1.svg"  width="1000"/>
+
+<img src="/img/results/aircraftGear/aircraft_gear_2.svg"  width="1000"/>
+
+<img src="/img/results/aircraftGear/aircraft_gear_3.svg"  width="1000"/>
+
+
+</details>
+
+<details>
+<summary> BouncingBall </summary>
+
+Bouncing ball example: Simulation of a rubber ball which, dropped from a certain height, bounces successively on the ground until it stops (used for WHEN statement demonstration)
+
+The results expected when starting from initial values of **h=10** and **h'=0** are:
+
+<img src="/img/results/bouncingBall/bouncingBall.svg"  width="1000"/>
+
+</details>
+
+<details>
+<summary> DiodeBridge </summary>
+
+A diode bridge conected to a circuit as represented by the following diagram:
+
+<img src="/img/components/diodeBridge.svg"  width="1000"/>
+
+The expected results with default settings are as follows:
+
+<img src="/img/results/diodeBridge/diodeBridge_1.svg"  width="1000"/>
+
+<img src="/img/results/diodeBridge/diodeBridge_2.svg"  width="1000"/>
+
+</details>
