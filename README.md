@@ -62,7 +62,6 @@ In the case of models imported from third-party sources, we have crafted our mas
 This repository does not cover the generation and manipulation of FMUs within our software. For that, you can check our documentation and our FMI examples toolkit (COMM_FMI), included with all program releases. 
 
 
-
 # Provided FMUs for testing and validation
 
 The following systems are all modeled and exported to FMU in EcosimPor/PROOSIS for the purpose of validation and testing of our capabilities or for others to use them as a tool to validate their own FMI masters.
@@ -115,6 +114,8 @@ The expected results with default settings are as follows:
 
 </details>
 
+A [pyhton script](sources/python/test_fmu.py) has been used, apart from EcosimPro/PROOSIS, to run and test all models. The script relies on fmpy as a master FMI library and also makes use of some other libraries, such as matplotlib and numpy for visualization and data structure manipulation, respectively.
+
 # Validation with Third-party FMUs
 
 The import capabilities of our master library have been validated with the following public resources:
@@ -126,6 +127,10 @@ The import capabilities of our master library have been validated with the follo
 
 
 ## Validation results
+
+All models have been validated in PROOSIS with COMM_FMI 3.1 library, using, for most cases, a simple generic [EL experiment](/sources/EL) that aims to run the model for 10 seconds and get some output variables.
+
+Some particular models, intended to test some other aspects, have been run with more especific experiments.
 
 <details>
 <summary> Modelica's Reference FMUs </summary>
@@ -176,5 +181,13 @@ The import capabilities of our master library have been validated with the follo
 
 </details>
 
+## Known issues
 
+Some of the thrid-party models presented some minor issues when testing them with EcosimPro/PROOSIS and COMM_FMI 3.1.
+
+* Some fmi 3.0 listed "time" as independent variable (as the standard indicates) but then crash when the master tries to get values from that variable.
+
+* Some models were tagged as subversions of the main 2.0 and 3.0 versions (like 3.1 or 3.0-beta). Our current master does not contemplate this variability in model versions and presents problems.
+
+We are currently aiming to fix these issues in futures updates. For now, we can work around both of them by simply editing the model_description.xml file and either removing the "time variable" (foir the first issue) or editing the version to 2.0 or 3.0 (for the second issue).
 
