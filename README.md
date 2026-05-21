@@ -189,5 +189,5 @@ Some of the thrid-party models presented some minor issues when testing them wit
 
 * Some models were tagged as subversions of the main 2.0 and 3.0 versions (like 3.1 or 3.0-beta). Our current master does not contemplate this variability in model versions and presents problems.
 
-We are currently aiming to fix these issues in futures updates. For now, we can work around both of them by simply editing the model_description.xml file and either removing the "time variable" (foir the first issue) or editing the version to 2.0 or 3.0 (for the second issue).
+We are currently aiming to fix these issues in futures updates. For now, we can work around both of them by simply editing the model_description.xml file and either removing the "time" variable (foir the first issue) or editing the version to 2.0 or 3.0 (for the second issue).
 
