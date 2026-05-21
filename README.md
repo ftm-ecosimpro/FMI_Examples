@@ -65,7 +65,7 @@ This repository does not cover the generation and manipulation of FMUs within ou
 
 # Provided FMUs for testing and validation
 
-The following systems are all modeled and exported to FMU in EcosimPor/PROOSIS for the purpose of validation and testing of our capabilities or for others to use them as a tool to validate their own FMi masters.
+The following systems are all modeled and exported to FMU in EcosimPor/PROOSIS for the purpose of validation and testing of our capabilities or for others to use them as a tool to validate their own FMI masters.
 
 <details>
 <summary> AircraftGear </summary>
@@ -138,7 +138,7 @@ The import capabilities of our master library have been validated with the follo
 | Feedthrough |  :white_check_mark: | :white_check_mark: |
 | Resource |  :white_check_mark: | :white_check_mark: |
 | Stair |  :white_check_mark: | :white_check_mark: |
-| StateSpace |  :white_check_mark: | :white_check_mark: |
+| StateSpace |  | :white_check_mark: |
 | VanDerPol |  :white_check_mark: | :white_check_mark: |
 
 </details>
