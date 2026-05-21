@@ -1,0 +1,54 @@
+ /*-----------------------------------------------------------------------------------------
+ LIBRARY: IMPORTED_FMU
+ COMPONENT: BouncingBall
+ PARTITION: default
+ EXPERIMENT: run_test
+ TEMPLATE: EMPTY EXPERIMENT
+ AUTHOR: ftm
+ COMPANY: EAG
+ DESCRIPTION: Simple test to run the FMI model
+ CREATION DATE: 21/05/2026
+-----------------------------------------------------------------------------------------*/
+
+USE COMM_FMI
+
+EXPERIMENT run_test ON BouncingBall.default
+   DECLS
+		REAL hModel = 0
+		REAL h = 10
+   
+   BODY
+		hModel = cfmLoadModel(expandFilePath(fmuPath),FALSE, FALSE, FALSE)
+		ASSERT (cfmGetLastError(hModel) == "") FATAL cfmGetLastError(hModel)
+	
+		TIME=0
+		TSTOP=10
+		CINT=0.01
+		
+		cfmSetStartTime(hModel, TIME)
+	   ASSERT(cfmGetLastError(hModel) == "") FATAL cfmGetLastError(hModel)
+	   
+		cfmSetStopTime(hModel, TSTOP)
+	   ASSERT(cfmGetLastError(hModel) == "") FATAL cfmGetLastError(hModel)
+	   
+		cfmSetCINT(hModel, CINT)
+		ASSERT(cfmGetLastError(hModel) == "") FATAL cfmGetLastError(hModel)
+		
+		cfmSetValueReal(hModel, "h", h)
+		ASSERT(cfmGetLastError(hModel) == "") FATAL cfmGetLastError(hModel)
+		
+		WHILE((TSTOP - TIME) >= CINT)
+			//cfmRun(hModel)
+			cfmRunUntil(hModel,TIME,CINT)
+	      ASSERT(cfmGetLastError(hModel) == "") FATAL cfmGetLastError(hModel)
+	      cfmWait(hModel)
+	      ASSERT(cfmGetLastError(hModel) == "") FATAL cfmGetLastError(hModel)
+			
+			h = cfmGetValueReal(hModel, "h")
+			ASSERT(cfmGetLastError(hModel) == "") FATAL cfmGetLastError(hModel)
+			
+			REPORT_REFRESH()
+			
+			TIME=TIME+CINT
+		END WHILE
+END EXPERIMENT

@@ -1,0 +1,83 @@
+ /*-----------------------------------------------------------------------------------------
+ LIBRARY: IMPORTED_FMU3
+ COMPONENT: Dymola_coupled
+ PARTITION: default
+ EXPERIMENT: run_test
+ TEMPLATE: EMPTY EXPERIMENT
+ AUTHOR: ftm
+ COMPANY: EAG
+ DESCRIPTION: 
+ CREATION DATE: 22/01/2026
+ COMMENTS: This fmu indicates fmi version 3.0.1. We have altered it to indicate 3.0 as the new versión is not expected and causes validation problems.
+-----------------------------------------------------------------------------------------*/
+
+USE COMM_FMI
+
+EXPERIMENT run_test ON Dymola_coupled.default
+   DECLS
+		REAL hModel = 0
+		REAL out = 0
+      BOOLEAN eventHandlingNeeded = FALSE
+      BOOLEAN terminateSimulation = FALSE
+      BOOLEAN earlyReturn = FALSE
+      REAL lastSuccessfulTime = 0.0
+      
+      BOOLEAN discreteStatesNeedUpdate = TRUE
+      BOOLEAN nextEventTimeDefined = FALSE
+      REAL nextEventTime = 0.0
+   
+   BODY
+		hModel = cfmLoadModel(expandFilePath(fmuPath),FALSE, TRUE, TRUE)
+		ASSERT (cfmGetLastError(hModel) == "") FATAL cfmGetLastError(hModel)
+	
+		TIME=0
+		TSTOP=10
+		CINT=0.001
+		
+		cfmSetStartTime(hModel, TIME)
+	   ASSERT(cfmGetLastError(hModel) == "") FATAL cfmGetLastError(hModel)
+	   
+		cfmSetStopTime(hModel, TSTOP)
+	   ASSERT(cfmGetLastError(hModel) == "") FATAL cfmGetLastError(hModel)
+	   
+		cfmSetCINT(hModel, CINT)
+		ASSERT(cfmGetLastError(hModel) == "") FATAL cfmGetLastError(hModel)
+		
+		WHILE((TSTOP - TIME) >= CINT AND NOT terminateSimulation)
+			cfmRunUntil(hModel,TIME,CINT)
+	      ASSERT(cfmGetLastError(hModel) == "") FATAL cfmGetLastError(hModel)
+	      
+         //Use the fmi 3 wait function to get early return information
+         cfmWait3(hModel, eventHandlingNeeded, terminateSimulation, earlyReturn, lastSuccessfulTime)
+	      ASSERT(cfmGetLastError(hModel) == "") FATAL cfmGetLastError(hModel)
+			
+         IF(earlyReturn) THEN
+            WRITE("Returned early at TIME = %f\n",lastSuccessfulTime)            
+            IF(eventHandlingNeeded) THEN
+               //The event needs to be manually handled
+               WRITE("Event handling required...\n")
+               //Iterate in event mode steps until the event is resolved
+               WHILE(discreteStatesNeedUpdate AND NOT terminateSimulation)
+                  WRITE("Updating discrete states...\n")
+                  //Call to do make a step to resolve the event
+                  cfmUpdateDiscreteStates(hModel)
+                  ASSERT(cfmGetLastError(hModel) == "") FATAL cfmGetLastError(hModel)
+                  //Wait for the event step to be done
+                  cfmWaitEventStep(hModel, discreteStatesNeedUpdate, terminateSimulation , nextEventTimeDefined, nextEventTime)
+                  ASSERT(cfmGetLastError(hModel) == "") FATAL cfmGetLastError(hModel)
+                  IF(nextEventTimeDefined) THEN
+                     WRITE("Next event defined at TIME = %f\n",nextEventTime)
+                  END IF
+               END WHILE
+               discreteStatesNeedUpdate = TRUE
+            END IF
+         END IF         
+         
+			out=cfmGetValueReal(hModel, "J1_w")
+			ASSERT(cfmGetLastError(hModel) == "") FATAL cfmGetLastError(hModel)
+			
+			REPORT_REFRESH()
+			
+			TIME=TIME+CINT
+		END WHILE
+END EXPERIMENT
