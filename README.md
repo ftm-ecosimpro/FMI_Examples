@@ -29,12 +29,12 @@ Currently, as for version 7.2, EcosimPro and PROOSIS support the exporting and i
 
 | FMI version | Interface Type | Import | Export |
 | :--- | --- | --- | --- |
-| 1.0 | Any | No | No |
-| 2.0 | ME | No | Yes |
-|  | CS | Yes | Yes |
-| 3.0 | ME | No | No |
-|  | CS | Yes | Yes |
-|  | SE | No | No |
+| 1.0 | Any | :x: | :x: |
+| 2.0 | ME | :x: | :white_check_mark: |
+|  | CS | :white_check_mark: | :white_check_mark: |
+| 3.0 | ME | :x: | :x: |
+|  | CS | :white_check_mark: | :white_check_mark: |
+|  | SE | :x: | :x: |
 
 *******************************************************************************************
 
@@ -42,18 +42,18 @@ Also, it is worth noting, that some of the new multiple functionalities introduc
 
 | Functionality | Import | Export |
 | :--- |  --- | --- |
-| Terminals |  No | No |
-| Icons |  No | No |
-| Clocks |  Yes | No |
-| Integer and Float Types |  Yes | Yes |
-| Binary type |  Yes | No |
-| Array variables |  Yes | No |
-| Structural parameters |  Yes | No |
-| Adjoint derivatives |  Yes | No |
-| Build configuration files |  No | No |
-| Early return |  Yes | No |
-| Event Mode |  Yes | No |
-| Intermediate Update Mode | No | No |
+| Terminals |  :x: | :x: |
+| Icons |  :x: | :x: |
+| Clocks |  :white_check_mark: | :x: |
+| Integer and Float Types |  :white_check_mark: | :white_check_mark: |
+| Binary type |  :white_check_mark: | :x: |
+| Array variables |  :white_check_mark: | :x: |
+| Structural parameters |  :white_check_mark: | :x: |
+| Adjoint derivatives |  :white_check_mark: | :x: |
+| Build configuration files |  :x: | :x: |
+| Early return |  :white_check_mark: | :x: |
+| Event Mode |  :white_check_mark: | :x: |
+| Intermediate Update Mode | :x: | :x: |
 
 It is worth mentioning that the lack of support for many of the new FMI 3.0 capabilities is simply because EcosimPro and PROOSIS do not internally use, or benefit from the use of many of them, such as Clocks, Binary variables, Early return, etc. Some others, such as Icons, Terminals and Array variables are currently being evaluated for future updates.
 
@@ -114,3 +114,67 @@ The expected results with default settings are as follows:
 <img src="/img/results/diodeBridge/diodeBridge_2.svg"  width="1000"/>
 
 </details>
+
+# Validation with Third-party FMUs
+
+The import capabilities of our master library have been validated with the following public resources:
+
+* [Modelica's Reference FMUs (0.0.39)](https://github.com/modelica/Reference-FMUs)
+* [Altair Twin Activate FMUs](https://github.com/altairengineering/fmus/tree/master)
+* [Dymola FMI Compatibility Information](https://github.com/CATIA-Systems/dymola-fmi-compatibility)
+* [Modelon FMI Toolbox](https://github.com/modelon-community/FMIToolbox-Compliance/tree/main)
+
+
+## Validation results
+
+<details>
+<summary> Modelica's Reference FMUs </summary>
+
+| Model | 2.0 | 3.0 |
+| :--- |  --- | --- |
+| BouncingBall |  :white_check_mark: | :white_check_mark: |
+| Clocks |   | :white_check_mark: |
+| Dahlquist |  :white_check_mark: | :white_check_mark: |
+| Feedthrough |  :white_check_mark: | :white_check_mark: |
+| Resource |  :white_check_mark: | :white_check_mark: |
+| Stair |  :white_check_mark: | :white_check_mark: |
+| StateSpace |  :white_check_mark: | :white_check_mark: |
+| VanDerPol |  :white_check_mark: | :white_check_mark: |
+
+</details>
+
+<details>
+<summary> Altair Twin Activate FMUs </summary>
+  
+| Model | 2.0 | 3.0 |
+| :--- |  --- | --- |
+| periodic_clock |   | :white_check_mark: |
+| sinewave_array |   | :white_check_mark: |
+| triggered_and_periodic_clock |  | :white_check_mark: |
+
+</details>
+
+<details>
+<summary> Dymola FMI Compatibility Information </summary>
+
+| Model | 2.0 | 3.0 |
+| :--- |  --- | --- |
+| CoupledClutches | :white_check_mark:  | :white_check_mark: |
+
+</details>
+
+<details>
+<summary> Modelon FMI Toolbox Information </summary>
+
+| Model | 2.0 | 3.0 |
+| :--- |  --- | --- |
+| Continuous | :white_check_mark:  | :white_check_mark: |
+| Discontinuities | :white_check_mark:  | :white_check_mark: |
+| EmbeddedCode | :white_check_mark: | :white_check_mark: |
+| IntegrateSignal | :white_check_mark:  | :white_check_mark: |
+| Signal_Attributes | :white_check_mark:  | :white_check_mark: |
+
+</details>
+
+
+
