@@ -116,6 +116,8 @@ The expected results with default settings are as follows:
 
 A [pyhton script](sources/python/test_fmu.py) has been used, apart from EcosimPro/PROOSIS, to run and test all models. The script relies on fmpy as a master FMI library and also makes use of some other libraries, such as matplotlib and numpy for visualization and data structure manipulation, respectively.
 
+Also, [references](/refs/) for all models have been provided in csv format for comparison when making use of the provided models.
+
 # Validation with Third-party FMUs
 
 The import capabilities of our master library have been validated with the following public resources:
